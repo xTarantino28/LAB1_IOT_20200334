@@ -5,18 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.transition.Visibility;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class activity_juego_run extends AppCompatActivity {
 
@@ -38,12 +42,20 @@ public class activity_juego_run extends AppCompatActivity {
     private int nroPartesCuerpo = 6;
     private int parteDelCuerpoActual;
 
+    private Timer timer;
+    private TimerTask task;
+    private long seconds;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_run);
 
         getSupportActionBar().setTitle("TeleAhorcado");
+
+
         palabras = getResources().getStringArray(R.array.palabras);
         palabrasLayout = findViewById(R.id.matchWordLayout);
         gridView = findViewById(R.id.gridLetters);
@@ -72,6 +84,30 @@ public class activity_juego_run extends AppCompatActivity {
 
     //metodo para empezar el juego.
     private void jugarAhorcado() {
+
+        timer = new Timer();
+        task = new TimerTask() {
+            long startTime = System.currentTimeMillis();
+            @Override
+            public void run() {
+                long currentTime = System.currentTimeMillis();
+                long elapsedTime = currentTime - startTime;
+
+                // Calcular el tiempo transcurrido en segundos
+                seconds = elapsedTime / 1000;
+
+                //System.out.println("Segundos transcurridos: " + seconds);
+
+                // Detener el temporizador después de 10 segundos
+                //if (seconds >= 10) {
+                //    timer.cancel(); // Detener el temporizador
+                //   System.out.println("Temporizador detenido después de 10 segundos.");
+            }
+        };
+        timer.scheduleAtFixedRate(task, 0, 1000);
+
+
+
         String nuevaPalabra = palabras[random.nextInt(palabras.length)]; //sortea una palabra del array de palabras. considera el tamanio del array
         while(nuevaPalabra.equals(palabraActual)) {  //el siguiente juego debe ser con una palabra diferente a la anterior
             nuevaPalabra = palabras[random.nextInt(palabras.length)];
@@ -80,6 +116,8 @@ public class activity_juego_run extends AppCompatActivity {
 
         characterViews = new TextView[palabraActual.length()]; //tamanio del arreglo de caracteres definido segun la palabra
 
+        TextView gameTextAlert = findViewById(R.id.gameTextAlert);
+        gameTextAlert.setText("");
         palabrasLayout.removeAllViews();
         for(int i=0; i<palabraActual.length(); i++   ) { //recorremos la palabraActual y agregamos las letras al textview
             characterViews[i] = new TextView(this); // inicializa el textview en cada pos del arrelgo de textviews
@@ -124,15 +162,23 @@ public class activity_juego_run extends AppCompatActivity {
 
         if (letraCorrecta) {
             if(contadorCorrecto==nroLetrasPalabra) {
+                deshabilitarBotones();
+
+                timer.cancel();
+
                 TextView gameTextAlert = findViewById(R.id.gameTextAlert);
-                gameTextAlert.setText("Ganó / Terminó en " + "time" + "s");
+                gameTextAlert.setText("Ganó / Terminó en "+ seconds +"s");
                 gameTextAlert.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+
             }
         } else if (parteDelCuerpoActual<nroPartesCuerpo) {
             partesDelCuerpo[parteDelCuerpoActual].setVisibility(View.VISIBLE);
             if ( parteDelCuerpoActual == nroPartesCuerpo-1) {
+                deshabilitarBotones();
+
+                timer.cancel();
                 TextView gameTextAlert = findViewById(R.id.gameTextAlert);
-                gameTextAlert.setText("Perdio / Terminó en " + "time" + "s");
+                gameTextAlert.setText("Perdio / Terminó en "+ seconds +"s");
                 gameTextAlert.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             }
             parteDelCuerpoActual++;
@@ -152,6 +198,12 @@ public class activity_juego_run extends AppCompatActivity {
             gameTextAlert.setText("Ganó / Terminó en " + "time" + "s");
         }*/
 
+    }
+
+    public void deshabilitarBotones(){
+        for(int i=0; i<gridView.getChildCount();i++){
+            gridView.getChildAt(i).setEnabled(false);
+        }
     }
 
 
