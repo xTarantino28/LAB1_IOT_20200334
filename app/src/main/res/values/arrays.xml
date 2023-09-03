@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="palabras">
+        <item>REDES</item>
+        <item>PROPA</item>
+        <item>PUCP</item>
+        <item>TELITO</item>
+        <item>TELECO</item>
+        <item>BATI</item>
+    </string-array>
+</resources>

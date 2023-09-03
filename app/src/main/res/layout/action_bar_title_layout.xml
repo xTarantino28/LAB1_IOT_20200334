@@ -12,7 +12,7 @@
         android:text="APPSIot - Lab 1"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         />
 
 

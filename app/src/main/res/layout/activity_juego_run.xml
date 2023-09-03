@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_juego_run">
+
+
+    <ImageView
+        android:id="@+id/tower"
+        android:layout_width="345dp"
+        android:layout_height="247dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/tower_no_background_foreground" />
+
+    <Button
+        android:id="@+id/button_nuevo_juego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="652dp"
+        android:text="Nuevo Juego"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/right_hand"
+        android:layout_width="61dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/tower"
+        app:layout_constraintTop_toTopOf="@+id/tower"
+        app:srcCompat="@mipmap/righthand_leftleg_foreground" />
+
+    <ImageView
+        android:id="@+id/head"
+        android:layout_width="65dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="44dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/tower"
+        app:layout_constraintTop_toTopOf="@+id/tower"
+        app:srcCompat="@mipmap/head_foreground" />
+
+    <ImageView
+        android:id="@+id/body"
+        android:layout_width="81dp"
+        android:layout_height="94dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="36dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/tower"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/tower"
+        app:layout_constraintTop_toTopOf="@+id/tower"
+        app:srcCompat="@mipmap/body_foreground" />
+
+    <ImageView
+        android:id="@+id/leftleg"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="76dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/tower"
+        app:layout_constraintTop_toTopOf="@+id/body"
+        app:srcCompat="@mipmap/righthand_leftleg_foreground" />
+
+    <ImageView
+        android:id="@+id/lefthand"
+        android:layout_width="67dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="76dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/tower"
+        app:layout_constraintTop_toTopOf="@+id/tower"
+        app:srcCompat="@mipmap/lefthand_rightleg_foreground" />
+
+    <ImageView
+        android:id="@+id/rightleg"
+        android:layout_width="61dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="76dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/tower"
+        app:layout_constraintTop_toTopOf="@+id/body"
+        app:srcCompat="@mipmap/lefthand_rightleg_foreground" />
+
+    <LinearLayout
+        android:id="@+id/matchWordLayout"
+        android:layout_width="377dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tower"></LinearLayout>
+
+    <GridView
+        android:id="@+id/gridLetters"
+        android:layout_width="348dp"
+        android:layout_height="276dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:horizontalSpacing="3dp"
+        android:numColumns="6"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matchWordLayout" />
+
+    <TextView
+        android:id="@+id/gameTextAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="604dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

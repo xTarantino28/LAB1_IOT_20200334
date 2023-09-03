@@ -33,12 +33,23 @@
         android:id="@+id/TeleAhorcado_vista_principal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="60dp"
         android:text="TeleAhorcado"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/button_jugar_principal"
+        android:layout_width="139dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="60dp"
+        android:text="Jugar"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TeleAhorcado_vista_principal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
