@@ -1,4 +1,4 @@
-package com.example.lab1_20200334;
+package com.example.LAB1_IOT_20200334;
 
 import android.content.Context;
 

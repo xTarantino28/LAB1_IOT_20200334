@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/context_azul"
+        android:orderInCategory="10"
+        android:title="Azul"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/context_verde"
+        android:orderInCategory="20"
+        android:title="Verde"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/context_rojo"
+        android:orderInCategory="30"
+        android:title="Rojo"
+        app:showAsAction="always"/>
+</menu>

@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LAB1_20200334"
+rootProject.name = "LAB1_IOT_20200334"
 include ':app'

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.lab1_20200334'
+    namespace 'com.example.LAB1_IOT_20200334'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.lab1_20200334"
+        applicationId "com.example.LAB1_IOT_20200334"
         minSdk 26
         targetSdk 33
         versionCode 1
