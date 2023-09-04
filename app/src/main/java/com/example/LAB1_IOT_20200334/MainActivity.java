@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
-    /*
+    /* info de ayuda en stack overflow para estudiar
     In a regular Android project, constants in the resource R class are declared like this:
 
     public static final int main=0x7f030004;
