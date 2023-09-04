@@ -5,6 +5,9 @@ plugins {
 android {
     namespace 'com.example.LAB1_IOT_20200334'
     compileSdk 33
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         applicationId "com.example.LAB1_IOT_20200334"

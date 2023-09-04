@@ -9,6 +9,8 @@ import android.os.SystemClock;
 import android.transition.Visibility;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,7 +19,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -46,6 +51,11 @@ public class activity_juego_run extends AppCompatActivity {
     private TimerTask task;
     private long seconds;
 
+    private boolean terminoJuego;
+
+    private  ArrayList<String> listaEstadisticas = new ArrayList<>();
+
+    private int nroJuegos;
 
 
     @Override
@@ -68,7 +78,7 @@ public class activity_juego_run extends AppCompatActivity {
         partesDelCuerpo[4] = findViewById(R.id.leftleg);
         partesDelCuerpo[5] = findViewById(R.id.rightleg);
 
-
+        nroJuegos = 1;
         jugarAhorcado();
 
 
@@ -76,15 +86,32 @@ public class activity_juego_run extends AppCompatActivity {
         playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!terminoJuego) {
+                    String estadistica = "Juego " + nroJuegos + ": Canceló";
+                    listaEstadisticas.add(estadistica);
+                }
+                nroJuegos++;
                 jugarAhorcado();
             }
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_bar_estadistica,menu);
+        return true;
+    }
+
+    public void estadisticaBtn(MenuItem menuItem){
+        Intent intent = new Intent(activity_juego_run.this, EstadisticaActivity.class);
+        intent.putExtra("listaEstadistica",listaEstadisticas);
+        startActivity(intent);
+    }
+
 
     //metodo para empezar el juego.
     private void jugarAhorcado() {
-
+        terminoJuego = false;
         timer = new Timer();
         task = new TimerTask() {
             long startTime = System.currentTimeMillis();
@@ -170,6 +197,11 @@ public class activity_juego_run extends AppCompatActivity {
                 gameTextAlert.setText("Ganó / Terminó en "+ seconds +"s");
                 gameTextAlert.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
+                //TextView estadisticaGano = new TextView(activity_juego_run.this);
+                //estadisticaGano.setText("Juego " + nroJuegos + ": Terminó en "+ seconds +"s");
+                String estadistica = "Juego " + nroJuegos + ": Terminó en "+ seconds +"s";
+                listaEstadisticas.add(estadistica);
+                terminoJuego = true;
             }
         } else if (parteDelCuerpoActual<nroPartesCuerpo) {
             partesDelCuerpo[parteDelCuerpoActual].setVisibility(View.VISIBLE);
@@ -180,6 +212,9 @@ public class activity_juego_run extends AppCompatActivity {
                 TextView gameTextAlert = findViewById(R.id.gameTextAlert);
                 gameTextAlert.setText("Perdio / Terminó en "+ seconds +"s");
                 gameTextAlert.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                String estadistica = "Juego " + nroJuegos + ": Terminó en "+ seconds +"s";
+                listaEstadisticas.add(estadistica);
+                terminoJuego = true;
             }
             parteDelCuerpoActual++;
         }
